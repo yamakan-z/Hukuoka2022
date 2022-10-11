@@ -7,6 +7,11 @@ public class Raycast2D : MonoBehaviour
 
     GameObject clickcard;//クリックしたカードを入れるゲームオブジェクト
 
+    public GameObject Player1Canvans;//プレイヤー1キャンバス
+
+    public GameObject Player2Canvans;//プレイヤー2キャンバス
+
+    public int Player_turn = 1;//現在のプレイヤー　1：1P　2：2P
 
     public int clicknum;//選択したカードの数字を入れる変数
 
@@ -15,12 +20,26 @@ public class Raycast2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player2Canvans.SetActive(false);//プレイヤー1からスタート
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Player_turn == 1)
+        {
+            Player2Canvans.SetActive(false);
+            Player1Canvans.SetActive(true);
+        }
+        else if (Player_turn == 2)
+        {
+            Player1Canvans.SetActive(false);
+            Player2Canvans.SetActive(true);
+        }
+
+
+
+
         //メインカメラ状のマウスカーソルのある位置からRayを飛ばす
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -54,6 +73,7 @@ public class Raycast2D : MonoBehaviour
               
             }
         }
+
 
 
     }
