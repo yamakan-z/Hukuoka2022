@@ -20,21 +20,27 @@ public class JudgeManager : MonoBehaviour
     void Update()
     {
         //Ÿ”s”»’è
-        //Ÿ‚¿
-        if (protonum < RayManager.GetComponent<Raycast2D>().clicknum && RayManager.GetComponent<Raycast2D>().judge)
+        if(RayManager.GetComponent<Raycast2D>().judge)
         {
-            Win();
+            //Ÿ‚¿
+            if (RayManager.GetComponent<Raycast2D>().clicknum[0] > RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Debug.Log("P1Ÿ—˜");
+                Win();
+            }
+            //•‰‚¯
+            else if (RayManager.GetComponent<Raycast2D>().clicknum[0] < RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Debug.Log("P2Ÿ—˜");
+                Lose();
+            }
+            //ˆø‚«•ª‚¯
+            else if (protonum == RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Dlow();
+            }
         }
-        //•‰‚¯
-        else if (protonum > RayManager.GetComponent<Raycast2D>().clicknum && RayManager.GetComponent<Raycast2D>().judge)
-        {
-            Lose();
-        }
-        //ˆø‚«•ª‚¯
-        else if(protonum==RayManager.GetComponent<Raycast2D>().clicknum&&RayManager.GetComponent<Raycast2D>().judge)
-        {
-            Dlow();
-        }
+        
 
     }
 
