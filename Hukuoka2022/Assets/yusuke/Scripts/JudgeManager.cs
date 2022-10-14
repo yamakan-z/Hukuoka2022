@@ -10,34 +10,38 @@ public class JudgeManager : MonoBehaviour
     [SerializeField]
     private GameObject RayManager;//レイマネージャーを持ってくる（Raycast2Dで取得したclicknumを持ってくる）
 
-    [SerializeField]
-    private GameObject Player;//仮プレイヤー
-
     // Start is called before the first frame update
     void Start()
     {
-       // Player.GetComponent<Player>().HP -= RayManager.GetComponent<Raycast2D>().clicknum;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         //勝敗判定
-        //勝ち
-        if (protonum < RayManager.GetComponent<Raycast2D>().clicknum && RayManager.GetComponent<Raycast2D>().judge)
+        if(RayManager.GetComponent<Raycast2D>().judge)
         {
-            Win();
+            //勝ち
+            if (RayManager.GetComponent<Raycast2D>().clicknum[0] > RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Debug.Log("P1勝利");
+                Win();
+            }
+            //負け
+            else if (RayManager.GetComponent<Raycast2D>().clicknum[0] < RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Debug.Log("P2勝利");
+                Lose();
+            }
+            //引き分け
+            else if (protonum == RayManager.GetComponent<Raycast2D>().clicknum[1])
+            {
+                Dlow();
+            }
         }
-        //負け
-        else if (protonum > RayManager.GetComponent<Raycast2D>().clicknum && RayManager.GetComponent<Raycast2D>().judge)
-        {
-            Lose();
-        }
-        //引き分け
-        else if(protonum==RayManager.GetComponent<Raycast2D>().clicknum&&RayManager.GetComponent<Raycast2D>().judge)
-        {
-            Dlow();
-        }
+        
+
     }
 
     public void Win()
@@ -45,8 +49,6 @@ public class JudgeManager : MonoBehaviour
         //勝利
         Debug.Log("勝ち");
         RayManager.GetComponent<Raycast2D>().judge = false;
-        Player.GetComponent<Player>().HP -= RayManager.GetComponent<Raycast2D>().clicknum;
-        Debug.Log( "HP="+Player.GetComponent<Player>().HP);
     }
 
     public void Lose()
