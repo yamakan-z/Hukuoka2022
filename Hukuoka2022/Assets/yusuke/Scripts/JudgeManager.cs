@@ -39,9 +39,12 @@ public class JudgeManager : MonoBehaviour
             {
                 Dlow();
             }
-        }
-        
 
+            if(protonum-=)
+            {
+                
+            }
+        }
     }
     
     public void P1Win()
