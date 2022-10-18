@@ -11,11 +11,11 @@ public class Raycast2D : MonoBehaviour
 
     public GameObject Player1Canvans;//プレイヤー1キャンバス
 
-    public GameObject Player2Canvans;//プレイヤー2キャンバス
+    public GameObject Player2Canvas;//プレイヤー2キャンバス
 
-    public int Player_turn = 1;//現在のプレイヤー　1：1P　2：2P
+    public GameObject BattleCanvas;//バトル画面を持ってくる
 
-    public bool j_start = false;//勝敗フラグを呼び出す
+    public int Turn_flow = 1;//現在のプレイヤー　1：1P　2：2P 3:バトル画面
 
     public int[] clicknum;//選択したカードの数字を入れる変数
 
@@ -25,21 +25,34 @@ public class Raycast2D : MonoBehaviour
     void Start()
     {
         clicknum = new int[2];//配列の作成
-        Player2Canvans.SetActive(false);//プレイヤー1からスタート
+        Player2Canvas.SetActive(false);//プレイヤー1からスタート
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player_turn == 1)
+        if (Turn_flow == 1)//1Pカード選択画面
         {
-            Player2Canvans.SetActive(false);
+            BattleCanvas.SetActive(false);
+            Player2Canvas.SetActive(false);
             Player1Canvans.SetActive(true);
         }
-        else if (Player_turn == 2)
+        else if (Turn_flow == 2)//2Pカード選択画面
         {
             Player1Canvans.SetActive(false);
-            Player2Canvans.SetActive(true);
+            Player2Canvas.SetActive(true);
+        }
+        else if(Turn_flow == 3)//バトル画面
+        {
+            Player2Canvas.SetActive(false);
+            BattleCanvas.SetActive(true);
+
+            //仮の処理として左クリックで画面を切り替える
+            if (Input.GetMouseButtonDown(0))
+            {
+                Turn_flow = 1;//ターンフローリセット
+                Debug.Log("a");
+            }
         }
 
 
@@ -68,33 +81,26 @@ public class Raycast2D : MonoBehaviour
 
                 //プレイヤーターンによって1P・2Pの選択したカードを取得する
                 //1P
-                if(Player_turn==1)
+                if(Turn_flow == 1)
                 {
                     clickcard[0] = hit.collider.gameObject;//クリックしたカードを取得する
-                    Debug.Log("a");
-
+                
                     clicknum[0] = clickcard[0].GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
-                    Debug.Log("b");
-
-                    Player_turn++;//2Pへターンを回す
+                   
+                    Turn_flow++;//2Pへターンを回す
                 }
                 //2P
-                else if (Player_turn == 2)
+                else if (Turn_flow == 2)
                 {
                     clickcard[1] = hit.collider.gameObject;//クリックしたカードを取得する
 
                     clicknum[1] = clickcard[1].GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
 
-                    j_start = true;
-                }
+                    Turn_flow++;//2Pへターンを回す
 
-                if(j_start)
-                {
                     judge = true;//勝敗を決定する
+
                 }
-                   
-               // Debug.Log(clicknum);
-              
             }
         }
 
