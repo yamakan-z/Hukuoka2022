@@ -26,13 +26,13 @@ public class JudgeManager : MonoBehaviour
             if (RayManager.GetComponent<Raycast2D>().clicknum[0] > RayManager.GetComponent<Raycast2D>().clicknum[1])
             {
                 Debug.Log("P1Ÿ—˜");
-                Win();
+                P1Win();
             }
             //•‰‚¯
             else if (RayManager.GetComponent<Raycast2D>().clicknum[0] < RayManager.GetComponent<Raycast2D>().clicknum[1])
             {
                 Debug.Log("P2Ÿ—˜");
-                Lose();
+                P2Win();
             }
             //ˆø‚«•ª‚¯
             else if (protonum == RayManager.GetComponent<Raycast2D>().clicknum[1])
@@ -43,15 +43,15 @@ public class JudgeManager : MonoBehaviour
         
 
     }
-
-    public void Win()
+    
+    public void P1Win()
     {
         //Ÿ—˜
         Debug.Log("Ÿ‚¿");
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 
-    public void Lose()
+    public void P2Win()
     {
         //•‰‚¯
         Debug.Log("•‰‚¯");
