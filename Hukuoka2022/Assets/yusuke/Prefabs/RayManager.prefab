@@ -43,5 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998938a04a5ea134c88f409eaf542218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clicknum: 0
+  clickcard:
+  - {fileID: 0}
+  - {fileID: 0}
+  Player1Canvans: {fileID: 0}
+  Player2Canvans: {fileID: 0}
+  BattleCanvas: {fileID: 0}
+  Turn_flow: 1
+  clicknum: 
   judge: 0
