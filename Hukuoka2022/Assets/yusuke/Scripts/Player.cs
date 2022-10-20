@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
 
     public int HP;//ƒvƒŒƒCƒ„[HP
+
+    public int Los;
       
     // Start is called before the first frame update
     void Start()
