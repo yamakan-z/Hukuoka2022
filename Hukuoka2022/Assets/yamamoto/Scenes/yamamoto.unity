@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &197495976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +601,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3033795449235827126, guid: 41ddf4aa51b41aa418dfc07fce1ff4ca, type: 3}
+      propertyPath: cardcost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033795449235827126, guid: 41ddf4aa51b41aa418dfc07fce1ff4ca, type: 3}
       propertyPath: BattleCanvas
       value: 
       objectReference: {fileID: 1931102037}
@@ -958,7 +962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1931102038
 MonoBehaviour:
   m_ObjectHideFlags: 0

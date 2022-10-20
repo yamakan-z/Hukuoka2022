@@ -15,6 +15,8 @@ public class Raycast2D : MonoBehaviour
 
     public GameObject BattleCanvas;//バトル画面を持ってくる
 
+    public int cardcost;//カードコスト
+
     public int Turn_flow = 1;//現在のプレイヤー　1：1P　2：2P 3:バトル画面
 
     public int[] clicknum;//選択したカードの数字を入れる変数
