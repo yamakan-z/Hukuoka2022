@@ -8,7 +8,13 @@ public class JudgeManager : MonoBehaviour
     private int protonum;//敵の数字（テスト用）
 
     [SerializeField]
+    private int protoenemy;//敵の体力
+
+    [SerializeField]
     private GameObject RayManager;//レイマネージャーを持ってくる（Raycast2Dで取得したclicknumを持ってくる）
+
+    [SerializeField]
+    private GameObject Player;//プレイヤースクリプトを持ってくる
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +46,13 @@ public class JudgeManager : MonoBehaviour
                 Dlow();
             }
         }
-        
-
     }
     
     public void P1Win()
     {
         //勝利
         Debug.Log("勝ち");
+        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum[0] - RayManager.GetComponent<Raycast2D>().clicknum[1];
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 
@@ -55,6 +60,7 @@ public class JudgeManager : MonoBehaviour
     {
         //負け
         Debug.Log("負け");
+        Player.GetComponent<Player>().HP-= RayManager.GetComponent<Raycast2D>().clicknum[1] - RayManager.GetComponent<Raycast2D>().clicknum[0];
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 

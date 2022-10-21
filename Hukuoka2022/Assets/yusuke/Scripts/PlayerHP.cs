@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerHP : MonoBehaviour
 {
-
-    public int HP;//ÉvÉåÉCÉÑÅ[HP
-
-    public int Los;
-      
+    public int P1HP;
+    public int P2HP;
     // Start is called before the first frame update
     void Start()
     {
