@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fe1be156d3f80e74988774eb1514ea14
+guid: 8bcbd665f495b7146a89cfb6672c0f39
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Isemin
+  - Pokemon Hollow
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
