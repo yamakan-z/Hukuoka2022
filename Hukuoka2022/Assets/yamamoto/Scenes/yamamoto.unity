@@ -516,6 +516,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2013061757415470929, guid: e64617b79a9228a44bdaf06b7791318e, type: 3}
   m_PrefabInstance: {fileID: 354675884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &240945863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 240945865}
+  - component: {fileID: 240945864}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &240945864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240945863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb96818341d50746ab16553db1c790a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 20
+  Los: 0
+--- !u!4 &240945865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240945863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.162881, y: 2.7029433, z: -1.0389932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &275395855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,9 +1967,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7890546395399767039, guid: ec2027b0b6f4c994c87f7e2048501613, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 240945863}
+    - target: {fileID: 7890546395399767039, guid: ec2027b0b6f4c994c87f7e2048501613, type: 3}
       propertyPath: RayManager
       value: 
       objectReference: {fileID: 835057144}
+    - target: {fileID: 7890546395399767039, guid: ec2027b0b6f4c994c87f7e2048501613, type: 3}
+      propertyPath: protoenemy
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2027b0b6f4c994c87f7e2048501613, type: 3}
 --- !u!4 &920336518553357432 stripped

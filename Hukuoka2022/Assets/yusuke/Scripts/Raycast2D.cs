@@ -14,6 +14,8 @@ public class Raycast2D : MonoBehaviour
 
     public GameObject enemyselect_card;//敵が選択したカード
 
+    public int e_select_num;//敵が選択したカードの数字
+
     public GameObject Player1Canvans;//プレイヤー1キャンバス
 
     public GameObject Player2Canvas;//プレイヤー2キャンバス
@@ -70,10 +72,15 @@ public class Raycast2D : MonoBehaviour
                 RandomCardSelect();
                 rand = false;//このターン1度だけランダム処理させる
             }
-          
 
-            enemyselect_card = enemycard[r_num];
 
+            enemyselect_card = enemycard[r_num];//敵の出すカードを決定する
+
+            e_select_num = enemyselect_card.GetComponent<CardManager>().cardnum;
+
+            Turn_flow++;//2Pへターンを回す
+
+            judge = true;//勝敗を決定する
         }
         else if(Turn_flow == 3)//バトル画面
         {
@@ -137,17 +144,17 @@ public class Raycast2D : MonoBehaviour
                    
                 }
                 //2P
-                else if (Turn_flow == 2)
-                {
-                    clickcard[1] = hit.collider.gameObject;//クリックしたカードを取得する
+                //else if (Turn_flow == 2)
+                //{
+                //    clickcard[1] = hit.collider.gameObject;//クリックしたカードを取得する
 
-                    clicknum[1] = clickcard[1].GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
+                //    clicknum[1] = clickcard[1].GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
 
-                    Turn_flow++;//2Pへターンを回す
+                //    Turn_flow++;//2Pへターンを回す
 
-                    judge = true;//勝敗を決定する
+                //    judge = true;//勝敗を決定する
 
-                }
+                //}
             }
         }
 
