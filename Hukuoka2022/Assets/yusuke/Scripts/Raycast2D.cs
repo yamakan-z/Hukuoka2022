@@ -67,17 +67,26 @@ public class Raycast2D : MonoBehaviour
             enemycards = enemycard;//デバッグ用にインスペクターに見えるようにする
 
             //ランダム処理を行う
-            if(rand)
+            while(rand)
             {
                 RandomCardSelect();
-                rand = false;//このターン1度だけランダム処理させる
+
+                enemyselect_card = enemycard[r_num];//敵の出すカードを決定する
+
+                e_select_num = enemyselect_card.GetComponent<CardManager>().cardnum;
+
+                //コストより出すカードの数字が大きければやり直し
+                if (e_select_num <= CostManager.GetComponent<CardCost>().enemy_cardcost)
+                {
+                    CostManager.GetComponent<CardCost>().enemy_cardcost -= e_select_num;
+                    rand = false;//このターン1度だけランダム処理させる
+                }
+                else
+                {
+                    Debug.Log("敵コスト不足！！");
+                }
             }
-
-
-            enemyselect_card = enemycard[r_num];//敵の出すカードを決定する
-
-            e_select_num = enemyselect_card.GetComponent<CardManager>().cardnum;
-
+           
             Turn_flow++;//2Pへターンを回す
 
             judge = true;//勝敗を決定する
