@@ -115,7 +115,7 @@ public class Raycast2D : MonoBehaviour
         //カードのレイヤーチェック
         if (hit.collider)
         {
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
             if (Input.GetMouseButtonDown(0))
             {
                 //clickcard = null;//オブジェクトの初期化

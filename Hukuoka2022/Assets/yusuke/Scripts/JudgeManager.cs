@@ -68,7 +68,7 @@ public class JudgeManager : MonoBehaviour
     {
         //Ÿ—˜
         Debug.Log("Ÿ‚¿");
-        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum[0] - RayManager.GetComponent<Raycast2D>().clicknum[1];
+        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum[0] - RayManager.GetComponent<Raycast2D>().e_select_num;
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 
@@ -83,8 +83,7 @@ public class JudgeManager : MonoBehaviour
 
     public void P2Win()
     {
-        //•‰‚¯
-        Debug.Log("•‰‚¯");
+        //Debug.Log("•‰‚¯");
         Player.GetComponent<Player>().HP-= RayManager.GetComponent<Raycast2D>().clicknum[1] - RayManager.GetComponent<Raycast2D>().clicknum[0];
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
