@@ -45,30 +45,32 @@ public class JudgeManager : MonoBehaviour
 
 
             //プレイヤー勝利
-            if (RayManager.GetComponent<Raycast2D>().clicknum[0] > RayManager.GetComponent<Raycast2D>().e_select_num)
+            if (RayManager.GetComponent<Raycast2D>().clicknum > RayManager.GetComponent<Raycast2D>().e_select_num)
             {
                 Debug.Log("P1勝利");
                 P1Win();
             }
             //敵勝利
-            else if (RayManager.GetComponent<Raycast2D>().clicknum[0] < RayManager.GetComponent<Raycast2D>().e_select_num)
+            else if (RayManager.GetComponent<Raycast2D>().clicknum < RayManager.GetComponent<Raycast2D>().e_select_num)
             {
                 Debug.Log("敵勝利");
                 EnemyWin();
             }
             //引き分け
-            else if (protonum == RayManager.GetComponent<Raycast2D>().clicknum[1])
+            else if (RayManager.GetComponent<Raycast2D>().clicknum == RayManager.GetComponent<Raycast2D>().e_select_num)
             {
                 Dlow();
             }
         }
+
+
     }
     
     public void P1Win()
     {
         //勝利
         Debug.Log("勝ち");
-        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum[0] - RayManager.GetComponent<Raycast2D>().e_select_num;
+        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum - RayManager.GetComponent<Raycast2D>().e_select_num;
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 
@@ -77,16 +79,16 @@ public class JudgeManager : MonoBehaviour
         //負け
         Debug.Log("負け");
         //防御計算　プレイヤーカードの数字 - 敵カードの数字
-        Player.GetComponent<Player>().HP -= RayManager.GetComponent<Raycast2D>().e_select_num - RayManager.GetComponent<Raycast2D>().clicknum[0];
+        Player.GetComponent<Player>().HP -= RayManager.GetComponent<Raycast2D>().e_select_num - RayManager.GetComponent<Raycast2D>().clicknum;
         RayManager.GetComponent<Raycast2D>().judge = false;
     }
 
-    public void P2Win()
-    {
-        //Debug.Log("負け");
-        Player.GetComponent<Player>().HP-= RayManager.GetComponent<Raycast2D>().clicknum[1] - RayManager.GetComponent<Raycast2D>().clicknum[0];
-        RayManager.GetComponent<Raycast2D>().judge = false;
-    }
+    //public void P2Win()
+    //{
+    //    //Debug.Log("負け");
+    //    Player.GetComponent<Player>().HP-= RayManager.GetComponent<Raycast2D>().clicknum[1] - RayManager.GetComponent<Raycast2D>().clicknum[0];
+    //    RayManager.GetComponent<Raycast2D>().judge = false;
+    //}
 
     public void Dlow()
     {
