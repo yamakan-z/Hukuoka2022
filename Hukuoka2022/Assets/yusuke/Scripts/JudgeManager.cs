@@ -11,10 +11,9 @@ public class JudgeManager : MonoBehaviour
     private int protoenemy;//敵の体力
 
     [SerializeField]
-    private GameObject RayManager;//レイマネージャーを持ってくる（Raycast2Dで取得したclicknumを持ってくる）
-
-    [SerializeField]
     private GameObject Player;//プレイヤースクリプトを持ってくる
+
+    public Raycast2D Raycast2D;//スクリプトを持ってくる
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +25,7 @@ public class JudgeManager : MonoBehaviour
     void Update()
     {
         //勝敗判定
-        if(RayManager.GetComponent<Raycast2D>().judge)
+        if(Raycast2D.judge)
         {
 
             //2人対戦用
@@ -45,19 +44,19 @@ public class JudgeManager : MonoBehaviour
 
 
             //プレイヤー勝利
-            if (RayManager.GetComponent<Raycast2D>().clicknum > RayManager.GetComponent<Raycast2D>().e_select_num)
+            if (Raycast2D.clicknum > Raycast2D.e_select_num)
             {
                 Debug.Log("P1勝利");
                 P1Win();
             }
             //敵勝利
-            else if (RayManager.GetComponent<Raycast2D>().clicknum < RayManager.GetComponent<Raycast2D>().e_select_num)
+            else if (Raycast2D.clicknum < Raycast2D.e_select_num)
             {
                 Debug.Log("敵勝利");
                 EnemyWin();
             }
             //引き分け
-            else if (RayManager.GetComponent<Raycast2D>().clicknum == RayManager.GetComponent<Raycast2D>().e_select_num)
+            else if (Raycast2D.clicknum == Raycast2D.e_select_num)
             {
                 Dlow();
             }
@@ -70,8 +69,8 @@ public class JudgeManager : MonoBehaviour
     {
         //勝利
         Debug.Log("勝ち");
-        protoenemy -= RayManager.GetComponent<Raycast2D>().clicknum - RayManager.GetComponent<Raycast2D>().e_select_num;
-        RayManager.GetComponent<Raycast2D>().judge = false;
+        protoenemy -= Raycast2D.clicknum - Raycast2D.e_select_num;
+        Raycast2D.judge = false;
     }
 
     public void EnemyWin()
@@ -79,8 +78,8 @@ public class JudgeManager : MonoBehaviour
         //負け
         Debug.Log("負け");
         //防御計算　プレイヤーカードの数字 - 敵カードの数字
-        Player.GetComponent<Player>().HP -= RayManager.GetComponent<Raycast2D>().e_select_num - RayManager.GetComponent<Raycast2D>().clicknum;
-        RayManager.GetComponent<Raycast2D>().judge = false;
+        Player.GetComponent<Player>().HP -= Raycast2D.e_select_num - Raycast2D.clicknum;
+        Raycast2D.judge = false;
     }
 
     //public void P2Win()
@@ -94,6 +93,6 @@ public class JudgeManager : MonoBehaviour
     {
         //引き分け
         Debug.Log("引き分け");
-        RayManager.GetComponent<Raycast2D>().judge = false;
+        Raycast2D.judge = false;
     }
 }

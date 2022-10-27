@@ -13,8 +13,6 @@ public class BattleManager : MonoBehaviour
 
     public GameObject EnemyCardArea;//相手のカード生成場所
 
-    //public GameObject RayCast2D;//取得カードの数字を持ってくる
-
     public Transform parent;
 
     [SerializeField]
