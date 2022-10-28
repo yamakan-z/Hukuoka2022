@@ -152,6 +152,8 @@ public class Raycast2D : MonoBehaviour
                         CostManager.GetComponent<CardCost>().cardcost -= clicknum;
 
                         Turn_flow++;//2P‚Öƒ^[ƒ“‚ğ‰ñ‚·
+
+                       // Destroy(hit.collider.gameObject);
                     }
                     else
                     {
