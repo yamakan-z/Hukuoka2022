@@ -132,7 +132,7 @@ public class Raycast2D : MonoBehaviour
         //カードのレイヤーチェック
         if (hit.collider)
         {
-            //Debug.Log(hit.collider.gameObject.name);
+            Debug.Log(hit.collider.gameObject.name);
             if (Input.GetMouseButtonDown(0))
             {
                 //clickcard = null;//オブジェクトの初期化
@@ -153,7 +153,8 @@ public class Raycast2D : MonoBehaviour
 
                         Turn_flow++;//2Pへターンを回す
 
-                       // Destroy(hit.collider.gameObject);
+                        Destroy(hit.collider.gameObject);
+
                     }
                     else
                     {

@@ -24,6 +24,9 @@ public class HandCreata : MonoBehaviour
 
     int count;
 
+    [SerializeField]
+    private int max;//残りの山札カード枚数
+
     public Transform parent;
 
   
@@ -46,6 +49,7 @@ public class HandCreata : MonoBehaviour
             rand.Add(i);
         }
 
+        //同じ配列のカードをとらないようにする
         while(rand.Count>0)
         {
 
@@ -65,23 +69,24 @@ public class HandCreata : MonoBehaviour
         
         for(int i=0;i<5;i++)
         {
-            //RandNumCreate();//ランダム数字生成
-
-            //rand = new List<int>();
-
-            //rand.Add(i);
-
-            //rand[i] = rand_num;
-
-            //Debug.Log(rand);
-
-           
             Instantiate(PlayerCard_Create[deck[i]], P_HandCreateArea[i].transform.position, Quaternion.identity, parent);
 
             P_HandCreateArea[i].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする
+
+            max++;
         }
 
 
+    }
+
+    //最初の5枚以降のカード生成を行う
+    public void CardCreate()
+    {
+        Instantiate(PlayerCard_Create[deck[max]], P_HandCreateArea[max].transform.position, Quaternion.identity, parent);
+
+        P_HandCreateArea[max].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする
+
+        max++;
     }
 
     // Update is called once per frame
