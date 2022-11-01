@@ -1423,7 +1423,9 @@ MonoBehaviour:
   - {fileID: 691507641}
   - {fileID: 193572132}
   - {fileID: 2132726577}
-  rand: 0
+  rand_num: 0
+  rand: 
+  deck: 
   parent: {fileID: 197495979}
 --- !u!4 &1267495975
 Transform:

@@ -14,38 +14,71 @@ public class HandCreata : MonoBehaviour
     GameObject[] P_HandCreateArea;//カード生成場所
 
     [SerializeField]
-    List<int> rand = new List<int>();
+    private int rand_num;//ランダムに生成した数字
+
+    [SerializeField]
+    List<int> rand = new List<int>();//山札
+
+    [SerializeField]
+    private int[] deck;//同じ配列のカードの重複を避けた山札
+
+    int count;
 
     public Transform parent;
 
-    [SerializeField]
-    List<GameObject> P_CardList = new List<GameObject>();//プレイヤーの手札を被りなく
-
+  
     /// <summary>
     /// ランダムな数字を生成する
     /// </summary>
     public void RandNumCreate()
     {
-        rand[0] = Random.Range(0, 20);
+        rand_num = Random.Range(0, 20);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
+        deck = new int[20];
+
+        for(int i=0;i<20;i++)
+        {
+            rand.Add(i);
+        }
+
+        while(rand.Count>0)
+        {
+
+            rand_num = Random.Range(0,rand.Count);
+
+            int r = rand[rand_num];
+            Debug.Log(r);
+
+            deck[count] =r;
+            count++;
+
+            rand.RemoveAt(rand_num);
+
+            
+        }
+
+        
         for(int i=0;i<5;i++)
         {
-            //  RandNumCreate();//ランダム数字生成
+            //RandNumCreate();//ランダム数字生成
 
-            rand.Add(i);
+            //rand = new List<int>();
 
-            Debug.Log(rand);
+            //rand.Add(i);
 
-            //P_CardList.Add(PlayerCard_Create[rand]);
+            //rand[i] = rand_num;
 
-            //Instantiate(PlayerCard_Create[rand], P_HandCreateArea[i].transform.position, Quaternion.identity, parent);
+            //Debug.Log(rand);
 
-           // P_HandCreateArea[i].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする
+           
+            Instantiate(PlayerCard_Create[deck[i]], P_HandCreateArea[i].transform.position, Quaternion.identity, parent);
+
+            P_HandCreateArea[i].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする
         }
 
 
