@@ -1,6 +1,9 @@
+//バトル画面の処理
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class BattleManager : MonoBehaviour
 {
@@ -21,10 +24,17 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private int e_cardnum;//RayCast2Dから持ってきたカードの数字を代入する(相手用）
 
-    public Raycast2D Raycast2D;//スクリプトを持ってくる
-
     [SerializeField]
     private GameObject[] CloneCard;//生成したカードを入れる
+
+    public Text Player_HPText;//プレイヤーのHPテキスト
+
+    public Text Enemy_HPText;//敵のHPテキスト
+
+    //----他のスクリプトから持ってくる-----
+    public Player Player;//プレイヤースクリプトを持ってくる
+    public Raycast2D Raycast2D;//スクリプトを持ってくる
+    public JudgeManager JudgeManager;//judgeManagerスクリプトを持ってくる
 
 
     void Start()
@@ -35,6 +45,13 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //テキストに現在のプレイヤーと敵のHPを表示
+        Player_HPText.text = string.Format("{0}", Player.HP);//自身HP表示
+
+        Enemy_HPText.text = string.Format("{0}", JudgeManager.enemy_HP);//敵HP表示
+
+
+        //---------------バトル画面に選択したカードを表示する
         p_cardnum = Raycast2D.clicknum;//clicknumを代入
 
         e_cardnum=Raycast2D.e_select_num;
@@ -63,5 +80,6 @@ public class BattleManager : MonoBehaviour
                 Destroy(obj);//配列に入ったカード全削除
             }
         }
+        //-----------------------------------------------
     }
 }

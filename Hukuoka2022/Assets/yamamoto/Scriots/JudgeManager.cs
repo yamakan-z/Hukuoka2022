@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class JudgeManager : MonoBehaviour
 {
-    [SerializeField]
-    private int protonum;//敵の数字（テスト用）
+    //[SerializeField]
+    //private int protonum;//敵の数字（テスト用）
 
-    [SerializeField]
-    private int protoenemy;//敵の体力
+    public int enemy_HP;//敵の体力
 
-    [SerializeField]
-    private GameObject Player;//プレイヤースクリプトを持ってくる
+    public Player Player;//プレイヤースクリプトを持ってくる
 
     public Raycast2D Raycast2D;//スクリプトを持ってくる
 
@@ -69,7 +67,7 @@ public class JudgeManager : MonoBehaviour
     {
         //勝利
         Debug.Log("勝ち");
-        protoenemy -= Raycast2D.clicknum - Raycast2D.e_select_num;
+        enemy_HP -= Raycast2D.clicknum - Raycast2D.e_select_num;
         Raycast2D.judge = false;
     }
 
@@ -78,7 +76,7 @@ public class JudgeManager : MonoBehaviour
         //負け
         Debug.Log("負け");
         //防御計算　プレイヤーカードの数字 - 敵カードの数字
-        Player.GetComponent<Player>().HP -= Raycast2D.e_select_num - Raycast2D.clicknum;
+        Player.HP -= Raycast2D.e_select_num - Raycast2D.clicknum;
         Raycast2D.judge = false;
     }
 
