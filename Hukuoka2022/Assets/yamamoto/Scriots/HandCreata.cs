@@ -36,6 +36,8 @@ public class HandCreata : MonoBehaviour
 
     public Transform parent;
 
+    //スクリプト参照
+
   
     /// <summary>
     /// ランダムな数字を生成する
@@ -92,6 +94,8 @@ public class HandCreata : MonoBehaviour
     //最初の5枚以降のカード生成を行う
     public void CardCreate()
     {
+        Debug.Log("はいった");
+
         Instantiate(PlayerCard_Create[deck[max]], P_HandCreateArea[max].transform.position, Quaternion.identity, parent);
 
         P_HandCreateArea[max].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする

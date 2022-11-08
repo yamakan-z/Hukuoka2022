@@ -39,6 +39,11 @@ public class Raycast2D : MonoBehaviour
 
     public bool card_d = false;//カード削除フラグ
 
+    public int g_num;//クリックしたカードに入っている生成場所情報を受け取る
+
+    //スクリプト参照
+    public HandCreata HandCreata;//手札カード生成スクリプトを持ってくる
+
     // Start is called before the first frame update
     void Start()
     {
@@ -151,9 +156,14 @@ public class Raycast2D : MonoBehaviour
 
                         CostManager.GetComponent<CardCost>().cardcost -= clicknum;
 
+                        g_num = clickcard.GetComponent<CardManager>().g_location;//取得したカードの生成場所情報を取得
+
                         Turn_flow++;//2Pへターンを回す
 
                         Destroy(hit.collider.gameObject);
+
+                       // HandCreata.CardCreate();
+
 
                     }
                     else

@@ -233,8 +233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: 192.6}
-  m_SizeDelta: {x: 233.72, y: 68.8}
+  m_AnchoredPosition: {x: -290, y: 192.6}
+  m_SizeDelta: {x: 294.21, y: 68.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100687315
 MonoBehaviour:
@@ -269,7 +269,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player:'
+  m_Text: 'PlayerHP:'
 --- !u!222 &100687316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1326,6 +1326,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3033795449235827126, guid: 41ddf4aa51b41aa418dfc07fce1ff4ca, type: 3}
+      propertyPath: HandCreata
+      value: 
+      objectReference: {fileID: 1267495974}
+    - target: {fileID: 3033795449235827126, guid: 41ddf4aa51b41aa418dfc07fce1ff4ca, type: 3}
       propertyPath: CostManager
       value: 
       objectReference: {fileID: 275395855}
@@ -1593,9 +1597,16 @@ MonoBehaviour:
   - {fileID: 691507641}
   - {fileID: 193572132}
   - {fileID: 2132726577}
+  CreateCard:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rand_num: 0
   rand: 
   deck: 
+  generation_num: 
   max: 0
   parent: {fileID: 197495979}
 --- !u!4 &1267495975
@@ -1777,7 +1788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 194, y: -4}
+  m_AnchoredPosition: {x: 236, y: -4}
   m_SizeDelta: {x: 233.72, y: 68.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606874430
@@ -2157,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1931102038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2356,8 +2367,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 274, y: 192.6}
-  m_SizeDelta: {x: 233.72, y: 68.8}
+  m_AnchoredPosition: {x: 277, y: 192.6}
+  m_SizeDelta: {x: 390.86, y: 68.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2022876264
 MonoBehaviour:
@@ -2392,7 +2403,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Enemy:'
+  m_Text: 'EnemyHP:'
 --- !u!222 &2022876265
 CanvasRenderer:
   m_ObjectHideFlags: 0
