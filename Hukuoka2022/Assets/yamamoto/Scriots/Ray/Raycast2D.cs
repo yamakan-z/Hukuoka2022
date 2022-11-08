@@ -7,7 +7,7 @@ public class Raycast2D : MonoBehaviour
 
     //配列を使用している時は[0]:1P [1]:2P
     [SerializeField]
-    GameObject[] clickcard = new GameObject[2];//クリックしたカードを入れるゲームオブジェクト
+    GameObject clickcard;//クリックしたカードを入れるゲームオブジェクト
 
     [SerializeField]
     GameObject[] enemycards;//敵が選択するカード
@@ -27,7 +27,7 @@ public class Raycast2D : MonoBehaviour
 
     public int Turn_flow = 1;//現在のプレイヤー　1：1P　2：2P 3:バトル画面
 
-    public int[] clicknum;//選択したカードの数字を入れる変数
+    public int clicknum;//選択したカードの数字を入れる変数
 
     int r_num;//敵カード取得のためランダムな数字をとる
 
@@ -35,10 +35,14 @@ public class Raycast2D : MonoBehaviour
 
     public bool judge;//勝敗判定を始めるフラグ
 
+    public bool card_g = false;//カード生成フラグ
+
+    public bool card_d = false;//カード削除フラグ
+
     // Start is called before the first frame update
     void Start()
     {
-        clicknum = new int[2];//配列の作成
+      //  clicknum = new int[2];//配列の作成
         Player2Canvas.SetActive(false);//プレイヤー1からスタート
     }
 
@@ -52,6 +56,7 @@ public class Raycast2D : MonoBehaviour
     {
         if (Turn_flow == 1)//1Pカード選択画面
         {
+            card_d = false;//カード削除制限
             BattleCanvas.SetActive(false);
             Player2Canvas.SetActive(false);
             Player1Canvans.SetActive(true);
@@ -67,20 +72,31 @@ public class Raycast2D : MonoBehaviour
             enemycards = enemycard;//デバッグ用にインスペクターに見えるようにする
 
             //ランダム処理を行う
-            if(rand)
+            while(rand)
             {
                 RandomCardSelect();
-                rand = false;//このターン1度だけランダム処理させる
+
+                enemyselect_card = enemycard[r_num];//敵の出すカードを決定する
+
+                e_select_num = enemyselect_card.GetComponent<CardManager>().cardnum;
+
+                //コストより出すカードの数字が大きければやり直し
+                if (e_select_num <= CostManager.GetComponent<CardCost>().enemy_cardcost)
+                {
+                    CostManager.GetComponent<CardCost>().enemy_cardcost -= e_select_num;
+                    rand = false;//このターン1度だけランダム処理させる
+                }
+                else
+                {
+                    Debug.Log("敵コスト不足！！");
+                }
             }
-
-
-            enemyselect_card = enemycard[r_num];//敵の出すカードを決定する
-
-            e_select_num = enemyselect_card.GetComponent<CardManager>().cardnum;
-
+           
             Turn_flow++;//2Pへターンを回す
 
             judge = true;//勝敗を決定する
+
+            card_g = true;//カード生成
         }
         else if(Turn_flow == 3)//バトル画面
         {
@@ -92,6 +108,7 @@ public class Raycast2D : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Turn_flow = 1;//ターンフローリセット
+                card_d = true;//カード削除
                 Debug.Log("a");
             }
         }
@@ -115,7 +132,7 @@ public class Raycast2D : MonoBehaviour
         //カードのレイヤーチェック
         if (hit.collider)
         {
-            //Debug.Log(hit.collider.gameObject.name);
+            Debug.Log(hit.collider.gameObject.name);
             if (Input.GetMouseButtonDown(0))
             {
                 //clickcard = null;//オブジェクトの初期化
@@ -125,16 +142,19 @@ public class Raycast2D : MonoBehaviour
                 if(Turn_flow == 1)
                 {
                    
-                    clickcard[0] = hit.collider.gameObject;//クリックしたカードを取得する
+                    clickcard = hit.collider.gameObject;//クリックしたカードを取得する
 
                     //現在のコストが選択したカードの数字より多ければ出せる
-                    if (CostManager.GetComponent<CardCost>().cardcost >= clickcard[0].GetComponent<CardManager>().cardnum)
+                    if (CostManager.GetComponent<CardCost>().cardcost >= clickcard.GetComponent<CardManager>().cardnum)
                     {
-                        clicknum[0] = clickcard[0].GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
+                        clicknum = clickcard.GetComponent<CardManager>().cardnum;//取得したカードの数字をclicknumに代入
 
-                        CostManager.GetComponent<CardCost>().cardcost -= clicknum[0];
+                        CostManager.GetComponent<CardCost>().cardcost -= clicknum;
 
                         Turn_flow++;//2Pへターンを回す
+
+                        Destroy(hit.collider.gameObject);
+
                     }
                     else
                     {
