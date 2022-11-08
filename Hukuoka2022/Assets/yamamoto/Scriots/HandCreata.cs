@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HandCreata : MonoBehaviour
@@ -14,6 +15,9 @@ public class HandCreata : MonoBehaviour
     GameObject[] P_HandCreateArea;//カード生成場所
 
     [SerializeField]
+    List<GameObject> CreateCard = new List<GameObject>();//生成したカードを入れる
+
+    [SerializeField]
     private int rand_num;//ランダムに生成した数字
 
     [SerializeField]
@@ -22,7 +26,10 @@ public class HandCreata : MonoBehaviour
     [SerializeField]
     private int[] deck;//同じ配列のカードの重複を避けた山札
 
-    int count;
+    int count;//配列被りをなくすための変数
+
+    [SerializeField]
+    private int[] generation_num;//生成場所番号を受け取る
 
     [SerializeField]
     private int max;//残りの山札カード枚数
@@ -56,7 +63,7 @@ public class HandCreata : MonoBehaviour
             rand_num = Random.Range(0,rand.Count);
 
             int r = rand[rand_num];
-            Debug.Log(r);
+            //Debug.Log(r);
 
             deck[count] =r;
             count++;
@@ -67,11 +74,14 @@ public class HandCreata : MonoBehaviour
         }
 
         
+        //初めのプレイヤー手札生成（SetActiveをtrueをしないと上手く動かないので注意！！！）
         for(int i=0;i<5;i++)
         {
-            Instantiate(PlayerCard_Create[deck[i]], P_HandCreateArea[i].transform.position, Quaternion.identity, parent);
+            CreateCard[i] = Instantiate(PlayerCard_Create[deck[i]], P_HandCreateArea[i].transform.position, Quaternion.identity, parent);//デッキ関数を参照してカードを生成する
 
             P_HandCreateArea[i].transform.localScale = Vector3.one;//カードの大きさを親オブジェクトに影響受けないようにする
+
+            CreateCard[i].GetComponent<CardManager>().g_location = max;//カード生成場所を記憶させる
 
             max++;
         }
